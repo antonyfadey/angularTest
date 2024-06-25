@@ -41,7 +41,6 @@ export class DataService {
       source: 'Оператор',
       phase: '—',
     },
-    
     {
       id: '2',
       date: '30.07.2022',
