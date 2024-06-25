@@ -1,0 +1,38 @@
+<div class="left-column">
+  <div class="left-column__header">
+    <div class="left-column__title">
+      <app-button
+        icon="assets/icons/buttonIcons/menu.svg"
+        text="Подстанции"
+        size="medium"
+        type="secondary"
+      ></app-button>
+      <p class="left-column__arrow">></p>
+      <h2>ТЭЦ ПГУ ГСР Энерго</h2>
+    </div>
+    <app-button
+      icon="assets/icons/buttonIcons/save.svg"
+      text="Сохранить"
+      size="medium"
+      [active]="false"
+    ></app-button>
+  </div>
+  <app-selector-with-divider
+    [items]="selectorWDItems"
+    [activeIndex]="1"
+  ></app-selector-with-divider>
+  <app-selector
+    size="small"
+    type="secondary"
+    [items]="selectorItems"
+    [activeIndex]="1"
+  ></app-selector>
+  <div class="left-column__filters">
+    <div class="left-column__dropdowns">
+      <app-dropdown text="Тип" value="Трансформаторы"></app-dropdown>
+      <app-dropdown text="РУ" value="110" size="short"></app-dropdown>
+    </div>
+    <app-switch label="Схема"></app-switch>
+  </div>
+  <app-table [data]="tableData" [columns]="columns" [preselectedRows]="preselectedRows"></app-table>
+</div>

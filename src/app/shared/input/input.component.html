@@ -1,0 +1,3 @@
+<div class="custom-input" [class.focused]="isFocused">
+  <input type="text" [value]="value" (focus)="isFocused = true" (blur)="isFocused = false" (input)="onInputChange($event)">
+</div>

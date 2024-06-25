@@ -1,0 +1,10 @@
+<div class="selectorWD">
+  <div
+    *ngFor="let item of items; let i = index"
+    [class.active]="i === activeIndex"
+    (click)="setActive(i)"
+    class="selectorWD__item"
+  >
+    <p class="selectorWD__text">{{ item.text }}</p>
+  </div>
+</div>

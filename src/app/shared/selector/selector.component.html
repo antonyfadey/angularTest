@@ -1,0 +1,21 @@
+<div
+  class="selector"
+  [ngClass]="{
+    'selector--big': size === 'big',
+    'selector--medium': size === 'medium',
+    'selector--small': size === 'small',
+    'selector--primary': type === 'primary',
+    'selector--secondary': type === 'secondary'
+  }"
+>
+  <div
+    *ngFor="let item of items; let i = index"
+    [class.selector__item--active]="i === activeIndex"
+    (click)="setActive(i)"
+    class="selector__item"
+    [ngClass]="{'selector__item--smallText': size=== 'small' && item.text!==''}"
+  >
+    <img *ngIf="item?.icon" [src]="item.icon" alt="icon" class="selector__icon" />
+    <p *ngIf="item?.text" class="selector__text">{{ item.text }}</p>
+  </div>
+</div>

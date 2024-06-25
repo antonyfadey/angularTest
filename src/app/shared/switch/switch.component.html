@@ -1,0 +1,6 @@
+<div class="switch-container" (click)="toggleSwitch()">
+  <div class="switch" [class.checked]="isChecked">
+    <div class="switch-handle"></div>
+  </div>
+  <p *ngIf="label" class="switch-label">{{ label }}</p>
+</div>

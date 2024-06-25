@@ -1,0 +1,13 @@
+<div class="dropdown">
+  <p>{{text}}</p>
+  <div
+    class="dropdown__input"
+    [ngClass]="{
+      'dropdown__input--long': size === 'long',
+      'dropdown__input--short': size === 'short'
+    }"
+  >
+    <p class="dropdown__value">{{ value }}</p>
+    <img *ngIf="icon" [src]="icon" alt="icon" class="dropdown__icon" />
+  </div>
+</div>

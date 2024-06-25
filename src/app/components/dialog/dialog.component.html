@@ -1,0 +1,16 @@
+<div class="dialog-backdrop" (click)="closeDialog()"></div>
+<div class="dialog">
+  <div class="dialog__header">
+    <h2>{{ title }}</h2>
+  </div>
+  <ng-container *ngTemplateOutlet="contentTemplate"></ng-container>
+  <div class="dialog__actions">
+    <app-button text="ОК" size="small" (click)="handleConfirm()"></app-button>
+    <app-button
+      text="Отмена"
+      size="small"
+      type="secondary"
+      (click)="closeDialog()"
+    ></app-button>
+  </div>
+</div>

@@ -1,0 +1,81 @@
+<div class="right-column">
+  <div class="right-column__header">
+    <img src="assets\images\facilities.png" alt="image" />
+    <h2>РТСН\НН-2</h2>
+  </div>
+  <div class="right-column__button-row">
+    <div class="right-column__buttons">
+      <app-button
+        icon="assets/icons/buttonIcons/certificate.svg"
+        text="Проверить"
+      ></app-button>
+      <app-button
+        icon="assets/icons/buttonIcons/cancel.svg"
+        text="Отменить проверку"
+      ></app-button>
+      <app-button
+        icon="assets/icons/buttonIcons/edit.svg"
+        text="Редактировать"
+        (click)="handleEditClick()"
+      ></app-button>
+      <app-button
+        icon="assets/icons/buttonIcons/delete.svg"
+        text="Удалить"
+        (click)="handleDeleteClick()"
+      ></app-button>
+    </div>
+    <div class="right-column__buttons">
+      <app-selector
+        size="small"
+        type="secondary"
+        [items]="tableViewItems"
+      ></app-selector>
+      <app-button
+        icon="assets/icons/buttonIcons/expand.svg"
+        type="secondary"
+      ></app-button>
+    </div>
+  </div>
+  <div class="right-column__filters">
+    <span
+      ><span class="right-column_red-text">Нет</span> проверенных замеров</span
+    >
+    <app-switch label="Группировать по дате"></app-switch>
+  </div>
+  <app-table
+    [data]="tableData"
+    [columns]="columns"
+    [multiSelect]="true"
+    [addLine]="true"
+    [preselectedRows]="preselectedRows"
+  ></app-table>
+</div>
+
+<ng-template #deleteContent>
+  <p>Вы действительно хотите удалить элементы?</p>
+</ng-template>
+
+<ng-template #editContent>
+  <div class="edit-template">
+    <div class="edit-template__row">
+      <p>Источник</p>
+      <app-input [(value)]="sourceEdit"></app-input>
+    </div>
+    <div class="edit-template__row">
+      <p>Дата</p>
+      <app-input [(value)]="dateEdit"></app-input>
+    </div>
+    <div class="edit-template__row">
+      <p>Время</p>
+      <app-input [(value)]="timeEdit"></app-input>
+    </div>
+  </div>
+</ng-template>
+
+<app-dialog
+  *ngIf="isDialogOpen"
+  (close)="closeDialog()"
+  (confirm)="handleConfirmClick()"
+  [title]="title"
+  [contentTemplate]="contentTemplate"
+></app-dialog>
