@@ -1,15 +1,17 @@
 import { Component, Input, SimpleChanges } from '@angular/core';
 import { SelectedRowsService } from '../../services/selected-rows.service';
 import { DialogComponent } from '../../components/dialog/dialog.component';
-import { SharedModule } from '../shared.module';
 import { CommonModule } from '@angular/common';
 import { DataService } from '../../services/data.service';
+import { Measure } from '../../models/measure.model';
+import { SharedModule } from '../../shared/shared.module';
 
 interface Column {
   header: string;
   key: string;
   width?: string;
 }
+
 
 @Component({
   selector: 'app-table',
@@ -29,7 +31,8 @@ export class TableComponent {
 
   isDialogOpen = false;
   title = '';
-  createSourceVal: string = '';
+
+  createObject: Measure = {};
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['preselectedRows']) {
@@ -37,9 +40,7 @@ export class TableComponent {
     }
   }
 
-  toggleRow(event: MouseEvent, index: number) {
-    event.stopPropagation();
-
+  toggleRow(index: number) {
     if (this.multiSelect) {
       if (this.selectedRows.has(index)) {
         this.selectedRows.delete(index);
@@ -63,7 +64,7 @@ export class TableComponent {
       this.selectedRows.clear();
       this.setSelectedRows();
     } else {
-      this.data.forEach((_, index) => this.selectedRows.add(index));
+      this.data.forEach((item, index) => this.selectedRows.add(index));
       this.setSelectedRows();
     }
   }
@@ -75,18 +76,33 @@ export class TableComponent {
   handleCreateClick(event: any) {
     this.isDialogOpen = true;
     this.title = 'Создание';
+
+    let currentDate = new Date();
+
+    let day = currentDate.getDate();
+    let month = (currentDate.getMonth() + 1).toString().padStart(2, '0');
+    let year = currentDate.getFullYear();
+    let hours = currentDate.getHours().toString().padStart(2, '0');
+    let minutes = currentDate.getMinutes().toString().padStart(2, '0');
+    let seconds = currentDate.getSeconds().toString().padStart(2, '0');
+
+    let formattedDate = `${day}.${month}.${year}`;
+    let formattedTime = `${hours}:${minutes}:${seconds}`;
+
+    this.createObject.date = formattedDate;
+    this.createObject.time = formattedTime;
   }
 
   handleConfirmClick() {
-    if (this.createSourceVal !== '')
-      this.dataService.createMeasure(this.createSourceVal);
-    this.createSourceVal = '';
+    this.dataService.createMeasure(this.createObject);
+    this.createObject = {};
     this.isDialogOpen = false;
   }
 
   closeDialog() {
     this.isDialogOpen = false;
   }
+
 
   private setSelectedRows() {
     this.selectedRowsService.setSelectedRows(

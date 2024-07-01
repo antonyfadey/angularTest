@@ -6,7 +6,17 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrl: './input.component.scss',
 })
 export class InputComponent {
-  @Input() value: string = '';
+  private _value: string = '';
+
+  @Input() set value(val: string | undefined) {
+    this._value = val ?? '';
+  }
+
+  get value(): string {
+    return this._value;
+  }
+
+  @Input() editable?: boolean = true;
   @Output() valueChange: EventEmitter<string> = new EventEmitter<string>();
 
   isFocused: boolean = false;

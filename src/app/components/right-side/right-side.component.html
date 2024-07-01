@@ -57,17 +57,47 @@
 
 <ng-template #editContent>
   <div class="edit-template">
-    <div class="edit-template__row">
+    <div class="edit-template__input">
       <p>Источник</p>
-      <app-input [(value)]="sourceEdit"></app-input>
+      <app-input [(value)]="editObject.source"></app-input>
     </div>
     <div class="edit-template__row">
-      <p>Дата</p>
-      <app-input [(value)]="dateEdit"></app-input>
+      <div class="edit-template__input">
+        <p>Дата</p>
+        <app-input [(value)]="editObject.date"></app-input>
+      </div>
+      <div class="edit-template__input">
+        <p>Время</p>
+        <app-input [(value)]="editObject.time"></app-input>
+      </div>
     </div>
     <div class="edit-template__row">
-      <p>Время</p>
-      <app-input [(value)]="timeEdit"></app-input>
+      <div class="edit-template__input">
+        <p>Фаза</p>
+        <app-input [(value)]="editObject.phase" [editable]="false"></app-input>
+      </div>
+      <div class="edit-template__input">
+        <p>U, kB</p>
+        <app-input [(value)]="editObject.U" [editable]="false"></app-input>
+      </div>
+      <div class="edit-template__input">
+        <p>I, A</p>
+        <app-input [(value)]="editObject.I" [editable]="false"></app-input>
+      </div>
+    </div>
+    <div class="edit-template__row">
+      <div class="edit-template__input">
+        <p>P, MBt</p>
+        <app-input [(value)]="editObject.P" [editable]="false"></app-input>
+      </div>
+      <div class="edit-template__input">
+        <p>Q, Mвар</p>
+        <app-input [(value)]="editObject.Q" [editable]="false"></app-input>
+      </div>
+      <div class="edit-template__input">
+        <p>cos φ</p>
+        <app-input [(value)]="editObject.cos" [editable]="false"></app-input>
+      </div>
     </div>
   </div>
 </ng-template>

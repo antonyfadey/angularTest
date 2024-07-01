@@ -4,7 +4,8 @@ import { DataService } from '../../services/data.service';
 import { SelectedRowsService } from '../../services/selected-rows.service';
 import { DialogComponent } from '../dialog/dialog.component';
 import { CommonModule } from '@angular/common';
-import { TableComponent } from '../../shared/table/table.component';
+import { Measure } from '../../models/measure.model';
+import { TableComponent } from '../table/table.component';
 
 @Component({
   selector: 'app-right-side',
@@ -38,9 +39,7 @@ export class RightSideComponent {
   private type: string = '';
   title = '';
 
-  sourceEdit = '';
-  dateEdit = '';
-  timeEdit = '';
+  editObject: Measure = {};
 
   @ViewChild('deleteContent') deleteContent!: TemplateRef<any>;
   @ViewChild('editContent') editContent!: TemplateRef<any>;
@@ -66,9 +65,7 @@ export class RightSideComponent {
       this.type = 'edit';
       this.title = 'Редактирование';
       this.contentTemplate = this.editContent;
-      this.sourceEdit = rows[0].source;
-      this.dateEdit = rows[0].date;
-      this.timeEdit = rows[0].time;
+      this.editObject = { ...rows[0] };
     }
   }
 
@@ -77,9 +74,7 @@ export class RightSideComponent {
     if (this.type === 'delete') {
       if (rows.length !== 0) this.dataService.deleteMeasures(rows);
     } else if (this.type === 'edit') {
-      rows[0].source = this.sourceEdit;
-      rows[0].date = this.dateEdit;
-      rows[0].time = this.timeEdit;
+      rows[0] = { ...this.editObject };
       this.dataService.updateMeasure(rows[0]);
     }
     this.isDialogOpen = false;

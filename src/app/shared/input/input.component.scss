@@ -1,4 +1,4 @@
-.custom-input {
+.input {
   display: inline-block;
   border: 1px solid #e0e0e0;
   border-radius: 4px;
@@ -14,8 +14,23 @@
   input {
     border: none;
     outline: none;
-    width: calc(100% - 16px); /* Учитываем padding для полного размера */
+    width: calc(100% - 16px);
     height: 100%;
     font-size: 14px;
+  }
+}
+
+.input--uneditable {
+  background-color: #f5f5f5;
+  color: #a9a9a9;
+  cursor: default;
+  &.focused {
+    border-color: #e0e0e0;
+  }
+
+  input {
+    background-color: #f5f5f5;
+    color: #a9a9a9;
+    cursor: default;
   }
 }

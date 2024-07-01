@@ -6,6 +6,7 @@ import { SelectorWithDividerComponent } from './selector-with-divider/selector-w
 import { DropdownComponent } from './dropdown/dropdown.component';
 import { SwitchComponent } from './switch/switch.component';
 import { InputComponent } from './input/input.component';
+import { CheckboxComponent } from './checkbox/checkbox.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { InputComponent } from './input/input.component';
     DropdownComponent,
     SwitchComponent,
     InputComponent,
+    CheckboxComponent,
   ],
   imports: [CommonModule],
   exports: [
@@ -24,6 +26,7 @@ import { InputComponent } from './input/input.component';
     DropdownComponent,
     SwitchComponent,
     InputComponent,
+    CheckboxComponent,
   ],
 })
 export class SharedModule {}

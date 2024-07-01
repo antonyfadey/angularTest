@@ -1,21 +1,9 @@
 import { Injectable } from '@angular/core';
+import { Measure } from '../models/measure.model';
 
 interface Facility {
   name: string;
   u: string;
-}
-
-interface Measure {
-  id: string;
-  date: string;
-  time: string;
-  source: string;
-  phase?: string;
-  U?: string;
-  I?: string;
-  P?: string;
-  Q?: string;
-  cos?: string;
 }
 
 @Injectable({
@@ -62,32 +50,12 @@ export class DataService {
     },
   ];
 
-  createMeasure(source: string) {
-    let id = Math.random().toString();
-    let currentDate = new Date();
-
-    let day = currentDate.getDate();
-    let month = (currentDate.getMonth() + 1).toString().padStart(2, '0');
-    let year = currentDate.getFullYear();
-    let hours = currentDate.getHours().toString().padStart(2, '0');
-    let minutes = currentDate.getMinutes().toString().padStart(2, '0');
-    let seconds = currentDate.getSeconds().toString().padStart(2, '0');
-
-    let formattedDate = `${day}.${month}.${year}`;
-    let formattedTime = `${hours}:${minutes}:${seconds}`;
-
-    let measure: Measure = {
-      id: id,
-      date: formattedDate,
-      time: formattedTime,
-      source: source,
-      phase: '—',
-    };
-    this.measures.push(measure);
+  createMeasure(createObject: Measure) {
+    createObject.id = Math.random().toString();
+    this.measures.push(createObject);
   }
 
   updateMeasure(measure: Measure) {
-    console.log(measure);
     let index = this.measures.findIndex((item) => item.id === measure.id);
 
     if (index !== -1) this.measures[index] = measure;

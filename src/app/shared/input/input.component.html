@@ -1,3 +1,14 @@
-<div class="custom-input" [class.focused]="isFocused">
-  <input type="text" [value]="value" (focus)="isFocused = true" (blur)="isFocused = false" (input)="onInputChange($event)">
+<div
+  class="input"
+  [class.focused]="isFocused"
+  [ngClass]="{ 'input--uneditable': editable === false }"
+>
+  <input
+    type="text"
+    [value]="value"
+    (focus)="isFocused = true"
+    (blur)="isFocused = false"
+    (input)="onInputChange($event)"
+    [readonly]="!editable"
+  />
 </div>

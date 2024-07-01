@@ -1,0 +1,103 @@
+<table class="table">
+  <thead>
+    <tr class="table__row">
+      <th *ngIf="multiSelect" class="table__header table__header--checkbox">
+        <app-checkbox
+          (change)="toggleAll()"
+          [checked]="isAllSelected()"
+        ></app-checkbox>
+      </th>
+      <th
+        *ngFor="let column of columns"
+        [style.width]="column.width"
+        class="table__header"
+      >
+        {{ column.header }}
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngIf="addLine" class="table__row">
+      <td
+        [attr.colspan]="columns.length + 1"
+        class="table__cell table__cell--add"
+      >
+        <div class="table__add" (click)="handleCreateClick($event)">
+          <img src="assets/icons/add.svg" alt="icon" class="table__add-icon" />
+          <a class="table__add-link">Добавить новые замеры</a>
+        </div>
+      </td>
+    </tr>
+    <tr
+      *ngFor="let item of data; let i = index"
+      [class.table__row--selected]="isSelected(i)"
+      (click)="toggleRow(i)"
+      class="table__row"
+    >
+      <td *ngIf="multiSelect" class="table__cell table__cell--checkbox">
+        <app-checkbox
+          (change)="toggleRow(i)"
+          [checked]="isSelected(i)"
+        ></app-checkbox>
+      </td>
+      <td *ngFor="let column of columns" class="table__cell">
+        {{ item[column.key] }}
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<ng-template #createContent>
+  <div class="create-template">
+    <div class="create-template__input">
+      <p>Источник</p>
+      <app-input [(value)]="createObject.source"></app-input>
+    </div>
+    <div class="create-template__row">
+      <div class="create-template__input">
+        <p>Дата</p>
+        <app-input [(value)]="createObject.date"></app-input>
+      </div>
+      <div class="create-template__input">
+        <p>Время</p>
+        <app-input [(value)]="createObject.time"></app-input>
+      </div>
+    </div>
+    <div class="create-template__row">
+      <div class="create-template__input">
+        <p>Фаза</p>
+        <app-input [(value)]="createObject.phase"></app-input>
+      </div>
+      <div class="create-template__input">
+        <p>U, kB</p>
+        <app-input [(value)]="createObject.U"></app-input>
+      </div>
+      <div class="create-template__input">
+        <p>I, A</p>
+        <app-input [(value)]="createObject.I"></app-input>
+      </div>
+    </div>
+    <div class="create-template__row">
+      <div class="create-template__input">
+        <p>P, MBt</p>
+        <app-input [(value)]="createObject.P"></app-input>
+      </div>
+      <div class="create-template__input">
+        <p>Q, Mвар</p>
+        <app-input [(value)]="createObject.Q"></app-input>
+      </div>
+      <div class="create-template__input">
+        <p>cos φ</p>
+        <app-input [(value)]="createObject.cos"></app-input>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<app-dialog
+  *ngIf="isDialogOpen"
+  (close)="closeDialog()"
+  (confirm)="handleConfirmClick()"
+  [title]="title"
+  [contentTemplate]="createContent"
+></app-dialog>

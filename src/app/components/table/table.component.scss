@@ -39,7 +39,7 @@
 
 .table__row {
   &--selected {
-    background-color: #d0e9ff;
+    background-color: #e5eff7;
   }
 
   &:not(.table__row--selected):hover {
@@ -101,8 +101,8 @@
 }
 
 .table__add-icon {
-  width: 20px;
-  height: 20px;
+  width: 14px;
+  height: 14px;
 }
 
 .table__add-link {
@@ -112,8 +112,22 @@
 
 .create-template {
   display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.create-template__row {
+  display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 20px;
+}
+
+.create-template__input {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 10px;
 }

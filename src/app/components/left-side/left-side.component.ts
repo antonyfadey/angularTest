@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { SharedModule } from '../../shared/shared.module';
 import { DataService } from '../../services/data.service';
-import { TableComponent } from '../../shared/table/table.component';
+import { TableComponent } from '../table/table.component';
 
 @Component({
   selector: 'app-left-side',
